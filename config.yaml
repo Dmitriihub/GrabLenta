@@ -1,0 +1,33 @@
+# GrabLenta — конфигурация парсера
+
+store:
+  slug: "spb-prospekt-prosveshheniya-21"
+  base_url: "https://lenta.com"
+
+categories:
+  - slug: "molochnye-produkty-syry-i-yayca"
+    name: "Молочная продукция"
+  - slug: "hleb-i-vypechka"
+    name: "Хлебобулочные изделия"
+
+http:
+  timeout_seconds: 30
+  page_size: 48
+  delay_min_ms: 500
+  delay_max_ms: 1200
+  retry_count: 3
+  retry_wait_ms: 2000
+
+proxy:
+  # Обязательно для запуска из-за рубежа и во избежание блокировок.
+  # Форматы: http://user:pass@host:port  или  socks5://user:pass@host:port
+  # Можно переопределить через env: PROXY_URL=http://... go run ./cmd/parser
+  url: ""
+
+output:
+  file: "products.csv"
+  delimiter: ";"
+
+log:
+  level: "info"
+  file: "parser.log"
